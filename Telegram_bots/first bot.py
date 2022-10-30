@@ -16,11 +16,11 @@ def main():
         global UserId
         UserId = message.chat.id
         ReKeyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        ReKeyboard.add('В начало')
+        ReKeyboard.add('Начать')
         bot.send_message(UserId, f'Привет, {UserId},через меня ты можешь узнать свои ближайшие дедлайны', reply_markup=ReKeyboard)
-    @bot.message_handler(regexp='В начало')
-    def menu(message):
-        bot.send_message(UserId, "Ну что ж, приступим!")
+    @bot.message_handler(regexp='Начать')
+    def Menu(message):
+        bot.send_message(UserId, "Ну что ж, приступим!", reply_markup=types.ReplyKeyboardRemove())
 
         Admin=False
         if (UserId==545762112):
@@ -35,10 +35,10 @@ def main():
         bot.send_message(UserId, f"Что вы хотите сделать\nadmin={Admin}\nid={UserId}", reply_markup=InKeyboard)
 
         @bot.callback_query_handler(func=lambda call:True)
-        def choise(call):
+        def Choise(call):
 
             InKeyboard = types.InlineKeyboardMarkup(row_width=2)
-            but1 = types.InlineKeyboardButton('Введение в профдеятельность', callback_data='InProf')
+            but1 = types.InlineKeyboardButton('Кононенко', callback_data='InProf')
             but2 = types.InlineKeyboardButton('Дискретная математика', callback_data='Nosyreva')
             but3 = types.InlineKeyboardButton('Иностранный язык', callback_data='English')
             but4 = types.InlineKeyboardButton('Информатика', callback_data='Informatics')
@@ -53,11 +53,22 @@ def main():
             if call.data=="Know":
                 bot.edit_message_text('Выберите предмет', UserId, message_id=call.message.message_id, reply_markup=InKeyboard)
 
-                if call.data=='InProf': ''
+                @bot.callback_query_handler(func=lambda call: True)
+                def Subject():
+                    if call.data =='InProf': bot.send_message(UserId, "leeee")
+                    if call.data == 'Nosyreva': ''
+                    if call.data == 'English': ''
+                    if call.data == 'Informatics': ''
+                    if call.data == 'Math': ''
+                    if call.data == 'BBC': ''
+                    if call.data == 'Prog': ''
+                    if call.data == 'Physics': ''
+                    if call.data == 'PE': ''
+                    if call.data == 'ToMenu':
+                        bot.delete_message(UserId, message_id=call.message.message_id)
+                        Menu(call.message)
+            elif call.data=="Edit": ''
 
-            elif call.data=="Edit":
-                bot.delete_message(UserId, message_id=call.message.message_id)
-                menu(call.message)
 
 main()
 

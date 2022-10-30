@@ -1,23 +1,91 @@
-import requests
-import time
+import telebot
+from config import Token
+from telebot import types
+bot=telebot.TeleBot(Token)
 
-TOKEN = 'токен'
-URL = 'https://api.telegram.org/bot'
+Admin=bool
+UserId=int
+def Error(message):
+    global UserId
+    bot.send_message(UserId, "Клавиатурой бота пользуйся, дебил!")
 
-def get_updates(offset=0):
-    result = requests.get(f'{URL}{TOKEN}/getUpdates?offset={offset}').json()
-    return result['result']
+def main():
 
-def run():
-    update_id = get_updates()[-1]['update_id'] # Присваиваем ID последнего отправленного сообщения боту
-    while True:
-        time.sleep(2)
-        messages = get_updates(update_id) # Получаем обновления
-        for message in messages:
-            # Если в обновлении есть ID больше чем ID последнего сообщения, значит пришло новое сообщение
-            if update_id < message['update_id']:
-                update_id = message['update_id'] # Присваиваем ID последнего отправленного сообщения боту
-                print(f"ID пользователя: {message['message']['chat']['id']}, Сообщение: {message['message']['text']}")
+    @bot.message_handler(commands=['start'])
+    def Hello(message):
+        global UserId
+        UserId = message.chat.id
+        ReKeyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        ReKeyboard.add('Начать')
+        bot.send_message(UserId, f'Привет, {UserId},через меня ты можешь узнать свои ближайшие дедлайны', reply_markup=ReKeyboard)
+    @bot.message_handler(regexp='Начать')
+    def Menu(message):
+        bot.send_message(UserId, "_", reply_markup=types.ReplyKeyboardRemove())
+        bot.delete_message(UserId, message_id=message.message_id+1)
 
-if __name__ == '__main__':
-    run()
+        Admin=False
+        if (UserId==545762112):
+            Admin=True
+
+        InKeyboard=types.InlineKeyboardMarkup(row_width=2)
+        but1 = types.InlineKeyboardButton("Узнать ближайшие дедлайны", callback_data='Know')
+        but2 = types.InlineKeyboardButton("Редактировать", callback_data='Edit')
+        InKeyboard.add(but1)
+        if (Admin==True): InKeyboard.add(but2)
+
+        bot.send_message(UserId, f"Что вы хотите сделать\nadmin={Admin}\nid={UserId}", reply_markup=InKeyboard)
+
+        @bot.callback_query_handler(func=lambda call:True)
+        def Choise(call):
+
+            InKeyboard = types.InlineKeyboardMarkup(row_width=2)
+            but1 = types.InlineKeyboardButton('Кононенко', callback_data='InProf')
+            but2 = types.InlineKeyboardButton('Дискретная математика', callback_data='Nosyreva')
+            but3 = types.InlineKeyboardButton('Иностранный язык', callback_data='English')
+            but4 = types.InlineKeyboardButton('Информатика', callback_data='Informatics')
+            but5 = types.InlineKeyboardButton('Математика', callback_data='Math')
+            but6 = types.InlineKeyboardButton('ОДК', callback_data='BBC')
+            but7 = types.InlineKeyboardButton('Программирование', callback_data='Prog')
+            but8 = types.InlineKeyboardButton('Физика', callback_data='Physics')
+            but9 = types.InlineKeyboardButton('Физкультура', callback_data='PE')
+            but10 = types.InlineKeyboardButton('В начало', callback_data='ToMenu')
+            InKeyboard.add(but1, but2, but3, but4, but5, but6, but7, but8, but9, but10)
+
+            if call.data=="Know":
+
+                bot.edit_message_text('Выберите предмет', UserId, message_id=call.message.message_id)
+                bot.edit_message_reply_markup(UserId, message_id=call.message.message_id, reply_markup=InKeyboard)
+
+            if call.data=="Edit":
+
+                bot.edit_message_text('Выберите предмет', UserId, message_id=call.message.message_id)
+                bot.edit_message_reply_markup(UserId, message_id=call.message.message_id, reply_markup=InKeyboard)
+
+            if call.data =='InProf': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'Nosyreva': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'English': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'Informatics': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'Math': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'BBC': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'Prog': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'Physics': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'PE': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'ToMenu':
+
+                bot.delete_message(UserId, message_id=call.message.message_id)
+                Menu(call.message)
+
+
+
+main()
+
+bot.polling(none_stop=True)
