@@ -16,15 +16,14 @@ def main():
         global UserId
         UserId = message.chat.id
         ReKeyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        ReKeyboard.add('Начать')
+        ReKeyboard.add('Запуск')
         bot.send_message(UserId, f'Привет, {UserId},через меня ты можешь узнать свои ближайшие дедлайны', reply_markup=ReKeyboard)
-    @bot.message_handler(regexp='Начать')
+    @bot.message_handler(regexp='Запуск')
     def Menu(message):
-        bot.send_message(UserId, "_", reply_markup=types.ReplyKeyboardRemove())
-        bot.delete_message(UserId, message_id=message.message_id+1)
+
 
         Admin=False
-        if (UserId==545762112):
+        if UserId==545762112 or UserId==958029367:
             Admin=True
 
         InKeyboard=types.InlineKeyboardMarkup(row_width=2)
@@ -48,7 +47,7 @@ def main():
             but7 = types.InlineKeyboardButton('Программирование', callback_data='Prog')
             but8 = types.InlineKeyboardButton('Физика', callback_data='Physics')
             but9 = types.InlineKeyboardButton('Физкультура', callback_data='PE')
-            but10 = types.InlineKeyboardButton('В начало', callback_data='ToMenu')
+            but10 = types.InlineKeyboardButton('В меню', callback_data='ToMenu')
             InKeyboard.add(but1, but2, but3, but4, but5, but6, but7, but8, but9, but10)
 
             if call.data=="Know":

@@ -1,4 +1,6 @@
 import telebot
+import sqlite3
+import datetime
 from config import Token
 from telebot import types
 bot=telebot.TeleBot(Token)
@@ -9,6 +11,9 @@ def Error(message):
     global UserId
     bot.send_message(UserId, "Клавиатурой бота пользуйся, дебил!")
 
+def deadlines(object):
+
+
 def main():
 
     @bot.message_handler(commands=['start'])
@@ -16,14 +21,14 @@ def main():
         global UserId
         UserId = message.chat.id
         ReKeyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        ReKeyboard.add('Начать')
+        ReKeyboard.add('Запуск')
         bot.send_message(UserId, f'Привет, {UserId},через меня ты можешь узнать свои ближайшие дедлайны', reply_markup=ReKeyboard)
-    @bot.message_handler(regexp='Начать')
+    @bot.message_handler(regexp='Запуск')
     def Menu(message):
-        bot.send_message(UserId, "Ну что ж, приступим!", reply_markup=types.ReplyKeyboardRemove())
+
 
         Admin=False
-        if (UserId==545762112):
+        if UserId==545762112 or UserId==958029367:
             Admin=True
 
         InKeyboard=types.InlineKeyboardMarkup(row_width=2)
@@ -47,29 +52,46 @@ def main():
             but7 = types.InlineKeyboardButton('Программирование', callback_data='Prog')
             but8 = types.InlineKeyboardButton('Физика', callback_data='Physics')
             but9 = types.InlineKeyboardButton('Физкультура', callback_data='PE')
-            but10 = types.InlineKeyboardButton('В начало', callback_data='ToMenu')
+            but10 = types.InlineKeyboardButton('В меню', callback_data='ToMenu')
             InKeyboard.add(but1, but2, but3, but4, but5, but6, but7, but8, but9, but10)
 
             if call.data=="Know":
-                bot.edit_message_text('Выберите предмет', UserId, message_id=call.message.message_id, reply_markup=InKeyboard)
 
-                @bot.callback_query_handler(func=lambda call: True)
-                def Subject():
-                    if call.data =='InProf': bot.send_message(UserId, "leeee")
-                    if call.data == 'Nosyreva': ''
-                    if call.data == 'English': ''
-                    if call.data == 'Informatics': ''
-                    if call.data == 'Math': ''
-                    if call.data == 'BBC': ''
-                    if call.data == 'Prog': ''
-                    if call.data == 'Physics': ''
-                    if call.data == 'PE': ''
-                    if call.data == 'ToMenu':
-                        bot.delete_message(UserId, message_id=call.message.message_id)
-                        Menu(call.message)
-            elif call.data=="Edit": ''
+                bot.edit_message_text('Выберите предмет', UserId, message_id=call.message.message_id)
+                bot.edit_message_reply_markup(UserId, message_id=call.message.message_id, reply_markup=InKeyboard)
+
+            if call.data=="Edit":
+
+                bot.edit_message_text('Выберите предмет', UserId, message_id=call.message.message_id)
+                bot.edit_message_reply_markup(UserId, message_id=call.message.message_id, reply_markup=InKeyboard)
+
+            if call.data =='InProf':
+                bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+                bot.send_message(UserId, call)
+
+            if call.data == 'Nosyreva': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'English': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'Informatics': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'Math': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'BBC': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'Prog': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'Physics': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'PE': bot.answer_callback_query(call.id, text="еще не готово", show_alert=False)
+
+            if call.data == 'ToMenu':
+
+                bot.delete_message(UserId, message_id=call.message.message_id)
+                Menu(call.message)
+
 
 
 main()
 
-bot.polling(none_stop=True)
+bot.polling(non_stop=True)     #bot.polling(long_polling_timeout=30)
