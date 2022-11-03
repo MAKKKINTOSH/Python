@@ -1,7 +1,3 @@
-import aiogram, config
-
-
-
 def main():
 
 
