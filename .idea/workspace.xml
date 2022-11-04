@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ef111009-7047-4ab2-aabf-16d7045d29fd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data bases/deadline_data_base.db" beforeDir="false" afterPath="$PROJECT_DIR$/Data bases/deadline_data_base.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data bases/deadline_data_base.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Data bases/test db program.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data bases/test db program.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telegram_bots/asynco bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/asynco bot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telegram_bots/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telegram_bots/first bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/first bot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telegram_bots/support 1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/support 1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telegram_bots/deadlines bot/deadline_data_base.db" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/deadline_data_base.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telegram_bots/deadlines bot/first bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/first bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telegram_bots/deadlines bot/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telegram_bots/deadlines bot/test bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/test bot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,20 +34,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/JetBrains/Проекты/first bot.py&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "E:/Рабочий стол/github/Python/Telegram_bots/new deadlines bot"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Рабочий стол\github\Python\Telegram_bots\new deadlines bot" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Рабочий стол\github\Python\Telegram_bots" />
       <recent name="E:\Рабочий стол\github\Python\Telegram_bots\deadlines bot" />
     </key>
   </component>
   <component name="RunManager" selected="Python.test bot">
-    <configuration name="first bot (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="first bot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -55,11 +59,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Telegram_bots/deadlines bot" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Telegram_bots" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Telegram_bots/deadlines bot/first bot.py" />
+      <option name="SCRIPT_NAME" value="E:\Рабочий стол\github\Python\Telegram_bots\first bot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -76,11 +80,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Telegram_bots" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Telegram_bots/deadlines bot" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="E:\Рабочий стол\github\Python\Telegram_bots\deadlines bot\first bot.py" />
+      <option name="SCRIPT_NAME" value="E:\Рабочий стол\github\Python\Telegram_bots\first bot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />

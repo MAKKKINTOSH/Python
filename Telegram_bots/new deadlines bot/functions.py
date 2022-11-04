@@ -29,21 +29,11 @@ class DeadDb:
                             " FROM object "
                             "WHERE object_type = ?",
                             (object_type,))
-        return self.cursor.fetchone()
+        return self.cursor.fetchone
 
-    def show_n_deadline(self, n):
-        object_name = ''
-        type=''
-        date = ''
-        self.cursor.execute("SELECT object_type FROM deadline WHERE rowid = ? ORDER BY deadline_date", (n,))
-        object_name = self.cursor.fetchone()
-        self.cursor.execute("SELECT object_name FROM object WHERE object_type = ?", (str(object_name)[2:-3],))
-        object_name = str(self.cursor.fetchone())[2:-3]
-        self.cursor.execute("SELECT deadline_type FROM deadline WHERE rowid = ? ORDER BY deadline_date", (n,))
-        type = 'Д/З' if str(self.cursor.fetchone())[2:-3] == '0' else 'Л/Р'
-        self.cursor.execute("SELECT deadline_date FROM deadline WHERE rowid = ? ORDER BY deadline_date", (n,))
-        a = str(self.cursor.fetchone())[2:-3] #yyyy-mm-dd   ->   dd.mm.yyyy
-        date = a[8]+a[9]+'.'+a[5]+a[6]+'.'+a[0]+a[1]+a[2]+a[3]
-        return (f"{object_name} {type}: {date}")
+    def show_n_deadlines(self, n):
+        self.cursor.execute("")
+
+
     def delete_deadline(self,):
         """Удаление дедлайна"""

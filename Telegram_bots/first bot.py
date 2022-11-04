@@ -5,7 +5,7 @@ from config import Token
 from telebot import types
 
 bot=telebot.TeleBot(Token)
-DB=sqlite3.connect('deadline_data_base.db')
+DB=sqlite3.connect('deadlines bot/deadline_data_base.db')
 
 Admin=bool
 UserId=int

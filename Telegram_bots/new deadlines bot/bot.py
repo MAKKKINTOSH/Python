@@ -7,17 +7,15 @@ from telebot import types
 bot=telebot.TeleBot(Token)
 DB=DeadDb('deadline_data_base.db')
 
-
-
 Admin=bool
-UserId = 0
+UserId=int
 edit_access = 0
 ObjectType = ''
 DeadlineDate = ''
 
 def main():
 
-    @bot.message_handler(commands=['start'])
+    @bot.message_handler(commands=['start'],)
     def Hello(message):
         global UserId
         UserId = message.chat.id
@@ -27,8 +25,7 @@ def main():
     @bot.message_handler(regexp='Запуск')
     def Menu(message):
 
-        global UserId, Admin
-        if UserId == 0: UserId = message.chat.id
+
         Admin=False
         if UserId==545762112 or UserId==958029367:
             Admin=True
@@ -44,8 +41,7 @@ def main():
 
         @bot.callback_query_handler(func=lambda call:True)
         def Choise(call):
-                                        #СДЕЛАТЬ АВТОУДАЛЕНИЕ СТАРЫХ ДАТ
-                                        #ОБЯЗАТЕЛЬНО!!!!
+
             CallData = ['InProf', 'Nosyreva', 'English', 'Informatics', 'Math', 'BBC', 'Prog', 'Physics', 'PE']
             global edit_access, ObjectType, DeadlineDate
 
@@ -65,11 +61,7 @@ def main():
             InKeyboardType = types.InlineKeyboardMarkup(row_width=3)
             but11 = types.InlineKeyboardButton('Д/З', callback_data='0')
             but12 = types.InlineKeyboardButton('Л/Р', callback_data='1')
-            InKeyboardType.add(but11, but12, but10)
-
-            EndKeyboardMarkup = types.InlineKeyboardMarkup(row_width=1)
-            but21 = types.InlineKeyboardButton('В начало', callback_data='ToStart')
-            EndKeyboardMarkup.add(but21)
+            InKeyboardType.add(but11, but12)
 
             if call.data=="Know":
 
@@ -79,13 +71,7 @@ def main():
 
             if call.data=="Know_five":
 
-                bot.edit_message_text(f"Ближайшие 5 дедлайнов\n"
-                                      f"1. {DB.show_n_deadline(1)}\n"
-                                      f"2. {DB.show_n_deadline(2)}\n"
-                                      f"3. {DB.show_n_deadline(3)}\n"
-                                      f"4. {DB.show_n_deadline(4)}\n"
-                                      f"5. {DB.show_n_deadline(5)}\n", UserId, message_id=call.message.message_id)
-                bot.edit_message_reply_markup(UserId, message_id=call.message.message_id, reply_markup=EndKeyboardMarkup )
+                bot.answer_callback_query(call.id, text="еще не готово", show_alert=True)
 
             if call.data=="Edit":
 
@@ -104,8 +90,7 @@ def main():
                     bot.edit_message_text('Д/З или Л/Р', UserId, message_id=call.message.message_id)
                     bot.edit_message_reply_markup(UserId, message_id=call.message.message_id, reply_markup=InKeyboardType)
                 if edit_access == 0:
-                    bot.edit_message_text(text=f"Ближайшие дедлайны\n{str(DB.object(ObjectType))[2:-3]}\nД/З: {str(DB.show_deadline(ObjectType, 0)) if str(DB.show_deadline(ObjectType, 0)) != 'None' else 'Дедлайнов нет'}\nЛ/Р: {str(DB.show_deadline(ObjectType, 1)) if str(DB.show_deadline(ObjectType, 1)) != 'None' else 'Дедлайнов нет'}", message_id=call.message.message_id, chat_id=UserId, parse_mode='HTML')
-                    bot.edit_message_reply_markup(UserId, message_id=call.message.message_id, reply_markup=EndKeyboardMarkup )
+                    bot.edit_message_text(text=f"Ближайшие дедлайны<br>{DB.object(ObjectType)}<br>Д/З: {DB.show_deadline(ObjectType, 0)}<br>Л/Р: {DB.show_deadline(ObjectType, 1)}", chat_id=UserId, parse_mode='HTML')
 
             if call.data == '1' or call.data == '0':
                 bot.send_message(UserId, 'Введите дату в формате дд.мм.гггг')
@@ -114,15 +99,10 @@ def main():
                     a = message.text
                     DeadlineDate = a[6] + a[7] + a[8] + a[9] + '-' + a[3] + a[4] + '-' + a[0] + a[1]
                     DB.make_deadline(ObjectType, int(call.data), DeadlineDate)
-                    bot.edit_message_reply_markup(UserId, message_id=call.message.message_id, reply_markup=EndKeyboardMarkup )
+                    Menu(message)
 
-            if call.data == "ToStart":
-                Menu(message)
 
 
 main()
 
 bot.polling(long_polling_timeout=30)            #bot.polling(non_stop=True)
-
-            #СДЕЛАТЬ ПРОВЕРКУ ВВОДА ДАТЫ НА РЕДАКТИРОВАНИИ
-            #ПОЧИНИТЬ СОРТИРОВКУ В БЛИЖАЙШИХ ПЯТИ
