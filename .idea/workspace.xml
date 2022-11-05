@@ -3,12 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ef111009-7047-4ab2-aabf-16d7045d29fd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data bases/deadline_data_base.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Data bases/test db program.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data bases/test db program.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telegram_bots/deadlines bot/deadline_data_base.db" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/deadline_data_base.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telegram_bots/deadlines bot/first bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/first bot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telegram_bots/deadlines bot/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telegram_bots/deadlines bot/test bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/test bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/based_files/инфа.py" beforeDir="false" afterPath="$PROJECT_DIR$/based_files/инфа.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,13 +33,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "E:/Рабочий стол/github/Python/Telegram_bots/new deadlines bot"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Рабочий стол/github/Python/Telegram_bots/new deadlines bot&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Рабочий стол\github\Python\Telegram_bots\new deadlines bot" />
@@ -50,7 +49,7 @@
       <recent name="E:\Рабочий стол\github\Python\Telegram_bots\deadlines bot" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test bot">
+  <component name="RunManager" selected="Python.test db program">
     <configuration name="first bot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -160,7 +159,6 @@
       <list>
         <item itemvalue="Python.test bot" />
         <item itemvalue="Python.test db program" />
-        <item itemvalue="Python.first bot (1)" />
         <item itemvalue="Python.support 1" />
         <item itemvalue="Python.first bot" />
       </list>
