@@ -4,7 +4,7 @@ class DeadDb:
 
     def __init__(self, data_base):
         """подключение базы данных"""
-        self.connect = sqlite3.connect('deadline_data_base.db', check_same_thread=False)
+        self.connect = sqlite3.connect(data_base, check_same_thread=False)
         self.cursor = self.connect.cursor()
 
     def make_deadline(self, object_type, deadline_type, deadline_date):
@@ -29,10 +29,7 @@ class DeadDb:
 
     def object(self, object_type):
         """вывод названия предмета"""
-        self.cursor.execute("SELECT object_name"
-                            " FROM object "
-                            "WHERE object_type = ?",
-                            (object_type,))
+        get = self.cursor.execute("SELECT object_name FROM object WHERE object_type = ?", (object_type,))
         return str(self.cursor.fetchone())[2:-3]
 
     def show_n_deadline(self, n):
@@ -64,8 +61,8 @@ class DeadDb:
 
     def print_data_base(self):
         """Метод для тестирования базы"""
-        self.cursor.execute("SELECT deadline_date FROM deadline ORDER BY deadline_date")
-        print(self.cursor.fetchall()[2])
+        self.cursor.execute("SELECT * FROM object")
+        print(self.cursor.fetchall())
 
     def show_all_deadline(self, object_type):
         all_deadline_string= '              гггг-мм-дд'
@@ -78,5 +75,12 @@ class DeadDb:
             else:
                 indexed_all = indexed_all.replace('1', 'Л/Р', 1)
             all_deadline_string+=f"\n{n+1}. {indexed_all[1:-1]}"
+        #print(all_deadline_string)             DELETE ON RELEASE
+        if all_deadline_string == '              гггг-мм-дд': return "\nТут нечего удалять"
         return all_deadline_string
 
+    def delete_deadline(self, object_type,n):
+        self.cursor.execute("SELECT deadline_type, deadline_date FROM deadline WHERE object_type = ? ORDER BY deadline_date", (object_type, ))
+        deadline = self.cursor.fetchall()[n-1]
+        self.cursor.execute("DELETE FROM deadline WHERE object_type = ? AND deadline_type = ? AND deadline_date = ?", (object_type, deadline[0], deadline[1]))
+        return self.connect.commit()

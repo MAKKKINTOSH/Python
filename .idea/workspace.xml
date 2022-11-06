@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef111009-7047-4ab2-aabf-16d7045d29fd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/bot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data bases/test db program.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data bases/test db program.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telegram_bots/deadlines bot/deadline_data_base.db" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/deadline_data_base.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telegram_bots/deadlines bot/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Telegram_bots/deadlines bot/test bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/deadlines bot/test bot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/based_files/инфа.py" beforeDir="false" afterPath="$PROJECT_DIR$/based_files/инфа.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telegram_bots/new deadlines bot/bot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Telegram_bots/new deadlines bot/deadline_data_base.db" beforeDir="false" afterPath="$PROJECT_DIR$/Telegram_bots/new deadlines bot/deadline_data_base.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,11 +47,32 @@
       <recent name="E:\Рабочий стол\github\Python\Telegram_bots\new deadlines bot" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Рабочий стол\github\Python\Telegram_bots" />
       <recent name="E:\Рабочий стол\github\Python\Telegram_bots\deadlines bot" />
+      <recent name="E:\Рабочий стол\github\Python\Telegram_bots" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test db program">
+  <component name="RunManager" selected="Python.bot">
+    <configuration name="bot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Telegram_bots/new deadlines bot" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="E:\Рабочий стол\github\Python\Telegram_bots\deadlines bot\bot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="first bot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -157,6 +180,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.bot" />
         <item itemvalue="Python.test bot" />
         <item itemvalue="Python.test db program" />
         <item itemvalue="Python.support 1" />

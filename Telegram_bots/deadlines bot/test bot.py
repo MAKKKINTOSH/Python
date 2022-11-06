@@ -23,7 +23,7 @@ def main():
     @bot.message_handler(regexp='Меню')
     def Menu(message):
 
-        print(message.chat.id, message.from_user.first_name, message.from_user.last_name)
+        #print(message.chat.id, message.from_user.first_name, message.from_user.last_name)
         #DELETE ON RELEASE
 
         DB.auto_delete_deadline()
@@ -31,8 +31,8 @@ def main():
         InKeyboard=types.InlineKeyboardMarkup(row_width=2)
         but1 = types.InlineKeyboardButton("ближайшие дедлайны", callback_data='Know')
         but2 = types.InlineKeyboardButton("Ближайшие 5 дедлайнов", callback_data='Know_five')
-        but3 = types.InlineKeyboardButton("Добавить", callback_data='Edit')
-        but4 = types.InlineKeyboardButton("Удалить", callback_data='Delete')
+        but3 = types.InlineKeyboardButton("✏Добавить✏", callback_data='Edit')
+        but4 = types.InlineKeyboardButton("✂Удалить✂", callback_data='Delete')
         InKeyboard.add(but1, but2)
         if (message.chat.id==545762112 or message.chat.id==958029367 or message.chat.id==1960549912 or message.chat.id==1340299205): InKeyboard.add(but3, but4)
 
@@ -40,6 +40,7 @@ def main():
 
         @bot.callback_query_handler(func=lambda call:True)
         def Choise(call):
+            print("***", call.data, "***")
 
             CallData = ['InProf', 'Nosyreva', 'English', 'Informatics', 'Math', 'BBC', 'Prog', 'Physics', 'PE']
             global edit_access, ObjectType, DeadlineDate
@@ -110,8 +111,17 @@ def main():
                     bot.edit_message_text(text=f"Ближайшие дедлайны\n{DB.object(ObjectType)}\nД/З: {DB.show_deadline(ObjectType, 0)}\nЛ/Р: {DB.show_deadline(ObjectType, 1)}", message_id=call.message.message_id, chat_id=call.from_user.id, parse_mode='HTML')
                     #bot.edit_message_reply_markup(call.from_user.id, message_id=call.message.message_id, reply_markup=EndKeyboardMarkup )
                 if edit_access == 2:
-                    bot.edit_message_text(f"<i>{DB.object(ObjectType)}</i>\nВведите номер дедлайна, который вы хотите удалить\n<b><u>ВНИМАНИЕ, отменить удаление нельзя</u></b>\n{DB.show_all_deadline(ObjectType)}", message_id=call.message.message_id, chat_id=call.from_user.id, parse_mode='html')
-                    Menu(message)
+                    bot.edit_message_text(f"<i>{DB.object(ObjectType)}</i>\nВведите номер дедлайна, который вы хотите удалить\n<b><u>❗❗❗АХТУНГ❗❗❗, отменить удаление нельзя</u></b>\n\n<i>Если передумали удалять, введите что угодно, но не номер дедлайна</i>\n\n{DB.show_all_deadline(ObjectType)}", message_id=call.message.message_id, chat_id=call.from_user.id, parse_mode='html')
+                    @bot.message_handler(content_types=['text'])
+                    def delete_number(message):
+                        n = message.text
+                        try:
+                            DB.delete_deadline(ObjectType, int(n))
+                            bot.send_message(message.chat.id, "✅Отлично, дедлайн успешно удален✅")
+                        except: bot.send_message(message.chat.id, "🚫Ошибка, вы неправильно ввели номер🚫")
+                        finally:
+                            print(edit_access, ObjectType, message.text)
+                            Menu(message)
 
             if call.data == '1' or call.data == '0':
                 bot.send_message(call.from_user.id, f'{DB.object(ObjectType)}\n{"Д/З" if call.data == "0" else "Л/Р"}\nВведите дату в формате дд.мм.гггг\n\n<i>Если передумал, введи что-угодно, но не дату</i>', parse_mode='html')
@@ -121,9 +131,11 @@ def main():
                     try:
                         DeadlineDate = a[6] + a[7] + a[8] + a[9] + '-' + a[3] + a[4] + '-' + a[0] + a[1]
                         DB.make_deadline(ObjectType, int(call.data), DeadlineDate)
-                        bot.send_message(message.chat.id, "Отлично, дедлайн успешно внесен")
-                    except: bot.send_message(message.chat.id, "Ошибка, вы ввели неправильную дату")
-                    finally: Menu(message)
+                        bot.send_message(message.chat.id, "✅Отлично, дедлайн успешно внесен✅")
+                    except: bot.send_message(message.chat.id, "🚫Ошибка, вы неправильно ввели дату🚫")
+                    finally:
+                        print(edit_access, call.data, message.text)
+                        Menu(message)
                     #bot.edit_message_reply_markup(call.from_user.id, message_id=call.message.message_id, reply_markup=EndKeyboardMarkup )
 
             #if call.data == "ToStart":
